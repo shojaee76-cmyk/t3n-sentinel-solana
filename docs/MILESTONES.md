@@ -3,6 +3,28 @@
 This file tracks progress against the 5 milestones in the grant application
 (see `bounty-lab/drafts/solana-foundation-application-answers.md`).
 
+## M2 — 3 agent-framework integrations — $12,000 (24%) — **CODE-COMPLETE**
+
+**Status:** All 3 integrations scaffolded + tests green. 12/12 integration tests pass.
+
+What was delivered (2026-08-28):
+- [x] **SendAI** (`integrations/sendai/`) — drop-in plugin for the official `solana-agent-kit ^2.0.10` npm package. 6/6 tests pass: PDA derivation, config shape, getKey M1 guard, wrap probe-then-fn. Plugin exposes `SentinelPlugin(config)` returning `{ name, vault, wrap(provider, fn) }`.
+- [x] **ElizaOS-on-Solana** (`integrations/elizaos/`) — 6 MCP tools (sentinel_init, sentinel_seal, sentinel_list, sentinel_probe, sentinel_rotate, sentinel_history) with zod-validated schemas. 4/4 tests pass: tool registration, schema validation, PDA derivation.
+- [x] **Griffin dev-kit example** (`integrations/griffin/agent.ts`) — a Solana trading agent whose every external API call is wrapped via `SentinelPlugin.wrap(provider, fn)`. 2/2 tests pass.
+
+**Tests (12/12 total):**
+| Test suite | Count | Status |
+|---|---|---|
+| `integrations/sendai/tests/standalone.test.ts` | 6 | PASS |
+| `integrations/elizaos/tests/elizaos.test.ts` | 4 | PASS |
+| `integrations/griffin/tests/griffin.test.ts` | 2 | PASS |
+
+**Outstanding for M2 sign-off:**
+- 3 demo videos (2 min each) — one per integration
+- 3 blog posts — one per integration
+- Live install + import test in a real agent (not just unit tests)
+- npm publish for @t3n/sentinel-sendai + @t3n/sentinel-elizaos
+
 ## M1 — Solana-native port live on devnet — $12,000 (24%) — **DONE**
 
 **Status:** compiled, 8/8 native Rust tests pass, SBF binary built.
