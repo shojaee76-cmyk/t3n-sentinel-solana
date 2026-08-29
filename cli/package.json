@@ -1,0 +1,33 @@
+{
+  "name": "@t3n/sentinel-solana",
+  "version": "0.1.0",
+  "description": "Private API-key vault & health sentinel for Solana AI agents — TypeScript CLI for the Anchor program.",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "sentinel": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "node --test --import tsx/esm tests/*.test.ts",
+    "sentinel": "tsx cli/index.ts"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.31.1",
+    "@solana/spl-token": "^0.4.0",
+    "@solana/web3.js": "^1.95.0",
+    "bs58": "^5.0.0",
+    "tweetnacl": "^1.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/tweetnacl": "^1.0.3",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
