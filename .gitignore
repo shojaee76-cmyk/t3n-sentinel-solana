@@ -16,3 +16,5 @@ test-target/
 **/keypair.json
 **/tee-worker.json
 **/id.json
+integrations/*/node_modules/
+integrations/*/dist/

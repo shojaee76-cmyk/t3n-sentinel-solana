@@ -1,0 +1,26 @@
+{
+  "name": "@t3n/sentinel-sendai",
+  "version": "0.1.0",
+  "description": "Solana Agent Kit (SendAI) plugin — drop-in API-key vault via t3n-sentinel on Solana",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "tsx --test tests/*.test.ts"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.31.1",
+    "@solana/web3.js": "^1.95.0",
+    "solana-agent-kit": "^2.0.10",
+    "bs58": "^5.0.0"
+  },
+  "peerDependencies": {
+    "solana-agent-kit": "^2.0.10"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0"
+  }
+}
