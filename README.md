@@ -53,12 +53,15 @@ is verifiable on Solana mainnet without a separate TEE runtime.
 Prereqs: Node 20+, Rust + cargo, Solana CLI 2.x, Anchor CLI 0.31.1.
 
 ```bash
-# 1. Build
+# 1. Build (WSL2 Linux recommended — Windows needs admin for the SBF symlink)
+#    agave 2.1.0 + platform-tools v1.43 in WSL; deps pinned for rust 1.79 (see Cargo.lock)
 anchor build
+# or directly: cargo build-sbf  (produces target/deploy/t3n_sentinel.so)
 
-# 2. Deploy to devnet
-anchor deploy --provider.cluster devnet
-# → note the program id; export SENTINEL_PROGRAM_ID=<id>
+# 2. Deploy (devnet or local validator)
+solana config set --url https://api.devnet.solana.com   # or http://localhost:8899
+solana program deploy target/deploy/t3n_sentinel.so --program-id target/deploy/t3n_sentinel-keypair.json
+# → program id (current: 2qCmCsivdUsD6ztZsJR28V1Z85nnss4oCCY2uxQKiBrP); export SENTINEL_PROGRAM_ID=<id>
 
 # 3. Set up CLI
 cd cli && npm install
@@ -80,6 +83,22 @@ npx tsx index.ts probe github
 # 7. View history
 npx tsx index.ts history
 ```
+
+## Verified on-chain (2026-09-01)
+
+Deployed and exercised the **full lifecycle on a local validator** (program
+`2qCmCsivdUsD6ztZsJR28V1Z85nnss4oCCY2uxQKiBrP`, SBF 356KB, all 5 txs confirmed):
+
+```
+initialize        → sig 2gcJQ4V...            (vault + history PDAs created)
+seal_provider     → sig 2mhaD74...            (github key written)
+record_probe 200  → sig 3u2cfG5...            (tee-worker writes verdict)
+list_providers    → github sealed=true, verdict=VALID, http_code=200, "key accepted by provider"
+history           → [{github, VALID, 200, ...}]
+```
+
+Devnet deploy pending faucet reset (devnet airdrop rate-limited; new faucet
+requires GitHub+Cloudflare). Watch cron `solana-devnet-deploy-retry`.
 
 ---
 
