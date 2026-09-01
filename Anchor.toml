@@ -6,7 +6,7 @@ resolution = true
 skip-lint = false
 
 [programs.devnet]
-t3n_sentinel = "t3nSent1ne1So1anaPubkey11111111111111111111"
+t3n_sentinel = "2qCmCsivdUsD6ztZsJR28V1Z85nnss4oCCY2uxQKiBrP"
 
 [registry]
 url = "https://api.apr.dev"

@@ -26,7 +26,7 @@ pub mod state;
 
 use state::{History, ProbeReceipt, SecretEntry, SecretVault};
 
-declare_id!("t3nSent1ne1So1anaPubkey11111111111111111111"); // placeholder; updated on first deploy
+declare_id!("2qCmCsivdUsD6ztZsJR28V1Z85nnss4oCCY2uxQKiBrP");
 
 #[program]
 pub mod t3n_sentinel {
